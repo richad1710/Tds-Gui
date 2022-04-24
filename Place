@@ -1,0 +1,149 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local TdsTower = Instance.new("ScreenGui")
+local TopBar = Instance.new("Frame")
+local Main = Instance.new("Frame")
+local _1 = Instance.new("UICorner")
+local TextLabel = Instance.new("TextLabel")
+local Place = Instance.new("TextButton")
+local _2 = Instance.new("UICorner")
+local Tower = Instance.new("TextBox")
+local _3 = Instance.new("UICorner")
+local UICorner = Instance.new("UICorner")
+local X = Instance.new("ImageButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local Show = Instance.new("ImageButton")
+
+--Properties:
+
+TdsTower.Name = "Tds Tower"
+TdsTower.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+TdsTower.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TopBar.Name = "TopBar"
+TopBar.Parent = TdsTower
+TopBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+TopBar.Position = UDim2.new(0.239659369, 0, 0.19880715, 0)
+TopBar.Size = UDim2.new(0, 428, 0, 41)
+TopBar.Active = true
+TopBar.Draggable = true
+
+Main.Name = "Main"
+Main.Parent = TopBar
+Main.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Main.Position = UDim2.new(-0.000994815957, 0, 1.22750926, 0)
+Main.Size = UDim2.new(0, 428, 0, 251)
+
+_1.Name = "1"
+_1.Parent = Main
+
+TextLabel.Parent = Main
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Size = UDim2.new(0, 428, 0, 60)
+TextLabel.Font = Enum.Font.Arcade
+TextLabel.Text = "Hello In This Script You SImulate That You Are Placing Any Tower That You Want"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+Place.Name = "Place"
+Place.Parent = Main
+Place.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Place.Position = UDim2.new(0.329439253, 0, 0.796812773, 0)
+Place.Size = UDim2.new(0, 145, 0, 42)
+Place.Font = Enum.Font.Arcade
+Place.Text = "Place"
+Place.TextColor3 = Color3.fromRGB(255, 255, 255)
+Place.TextSize = 25.000
+Place.TextWrapped = true
+
+_2.Name = "2"
+_2.Parent = Place
+
+Tower.Name = "Tower"
+Tower.Parent = Main
+Tower.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Tower.Position = UDim2.new(0.31775701, 0, 0.4741036, 0)
+Tower.Size = UDim2.new(0, 156, 0, 46)
+Tower.Font = Enum.Font.Arcade
+Tower.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Tower.PlaceholderText = "Tower Name Here...."
+Tower.Text = ""
+Tower.TextColor3 = Color3.fromRGB(255, 255, 255)
+Tower.TextScaled = true
+Tower.TextSize = 14.000
+Tower.TextWrapped = true
+
+_3.Name = "3"
+_3.Parent = Tower
+
+UICorner.Parent = TopBar
+
+X.Name = "X"
+X.Parent = TopBar
+X.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+X.BackgroundTransparency = 1.000
+X.Position = UDim2.new(0.906542063, 0, 0.121951222, 0)
+X.Size = UDim2.new(0, 30, 0, 30)
+X.Image = "rbxassetid://7072725342"
+
+TextLabel_2.Parent = TopBar
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Size = UDim2.new(0, 225, 0, 41)
+TextLabel_2.Font = Enum.Font.Arcade
+TextLabel_2.Text = "Tower Placement"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 20.000
+
+Show.Name = "Show"
+Show.Parent = TopBar
+Show.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Show.BackgroundTransparency = 1.000
+Show.Position = UDim2.new(0.803738296, 0, 0.121951222, 0)
+Show.Size = UDim2.new(0, 30, 0, 30)
+Show.Image = "rbxassetid://7072706663"
+
+-- Scripts:
+
+local function SWOGW_fake_script() -- Place.LocalScript 
+	local script = Instance.new('LocalScript', Place)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		local Tower = script.Parent.Parent.Tower.Text
+		
+		getgenv().Troop = Tower
+	
+		local v = require(game:GetService("ReplicatedStorage").Assets.Troops[getgenv().Troop].Stats)
+		require(game:GetService("ReplicatedStorage").Client.Modules.Game.Compatibility.Controllers.Placement):Start({Name = getgenv().Troop, Class = v.Class, Model = game:GetService("ReplicatedStorage").Assets.Troops[getgenv().Troop].Skins.Default, Range = v.Range})
+	end)
+end
+coroutine.wrap(SWOGW_fake_script)()
+local function DTYKC_fake_script() -- X.LocalScript 
+	local script = Instance.new('LocalScript', X)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		script.Parent.Parent.Main.Visible = false
+		script.Parent.Parent.Parent.TopBar.Visible = false
+	end)
+end
+coroutine.wrap(DTYKC_fake_script)()
+local function DQCNPW_fake_script() -- Show.LocalScript 
+	local script = Instance.new('LocalScript', Show)
+
+	script.Parent.MouseButton1Click:Connect(function()
+		if script.Parent.Parent.Main.Visible == false then
+			script.Parent.Parent.Main.Visible = true
+			script.Parent.Image = "rbxassetid://7072706663"
+		else
+			script.Parent.Parent.Main.Visible = false
+			script.Parent.Image = "rbxassetid://7072706796"
+		end
+	end)
+end
+coroutine.wrap(DQCNPW_fake_script)()
