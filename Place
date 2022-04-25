@@ -12,6 +12,8 @@ local Place = Instance.new("TextButton")
 local _2 = Instance.new("UICorner")
 local Tower = Instance.new("TextBox")
 local _3 = Instance.new("UICorner")
+local Skin = Instance.new("TextBox")
+local _3_2 = Instance.new("UICorner")
 local UICorner = Instance.new("UICorner")
 local X = Instance.new("ImageButton")
 local TextLabel_2 = Instance.new("TextLabel")
@@ -26,7 +28,7 @@ TdsTower.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 TopBar.Name = "TopBar"
 TopBar.Parent = TdsTower
 TopBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-TopBar.Position = UDim2.new(0.239659369, 0, 0.19880715, 0)
+TopBar.Position = UDim2.new(0.238678828, 0, 0.215007961, 0)
 TopBar.Size = UDim2.new(0, 428, 0, 41)
 TopBar.Active = true
 TopBar.Draggable = true
@@ -68,7 +70,7 @@ _2.Parent = Place
 Tower.Name = "Tower"
 Tower.Parent = Main
 Tower.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Tower.Position = UDim2.new(0.31775701, 0, 0.4741036, 0)
+Tower.Position = UDim2.new(0.0630841255, 0, 0.4741036, 0)
 Tower.Size = UDim2.new(0, 156, 0, 46)
 Tower.Font = Enum.Font.Arcade
 Tower.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
@@ -81,6 +83,23 @@ Tower.TextWrapped = true
 
 _3.Name = "3"
 _3.Parent = Tower
+
+Skin.Name = "Skin"
+Skin.Parent = Main
+Skin.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Skin.Position = UDim2.new(0.558411241, 0, 0.4741036, 0)
+Skin.Size = UDim2.new(0, 156, 0, 46)
+Skin.Font = Enum.Font.Arcade
+Skin.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+Skin.PlaceholderText = "Skin Name Here...."
+Skin.Text = ""
+Skin.TextColor3 = Color3.fromRGB(255, 255, 255)
+Skin.TextScaled = true
+Skin.TextSize = 14.000
+Skin.TextWrapped = true
+
+_3_2.Name = "3"
+_3_2.Parent = Skin
 
 UICorner.Parent = TopBar
 
@@ -111,29 +130,30 @@ Show.Image = "rbxassetid://7072706663"
 
 -- Scripts:
 
-local function SWOGW_fake_script() -- Place.LocalScript 
+local function CXAUP_fake_script() -- Place.LocalScript 
 	local script = Instance.new('LocalScript', Place)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		local Tower = script.Parent.Parent.Tower.Text
-		
+		local S = script.Parent.Parent.Skin.Text
+	
+		getgenv().Skin = S
 		getgenv().Troop = Tower
 	
 		local v = require(game:GetService("ReplicatedStorage").Assets.Troops[getgenv().Troop].Stats)
-		require(game:GetService("ReplicatedStorage").Client.Modules.Game.Compatibility.Controllers.Placement):Start({Name = getgenv().Troop, Class = v.Class, Model = game:GetService("ReplicatedStorage").Assets.Troops[getgenv().Troop].Skins.Default, Range = v.Range})
+		require(game:GetService("ReplicatedStorage").Client.Modules.Game.Compatibility.Controllers.Placement):Start({Name = getgenv().Troop, Class = v.Class, Model = game:GetService("ReplicatedStorage").Assets.Troops[getgenv().Troop].Skins[getgenv().Skin], Range = v.Range})
 	end)
 end
-coroutine.wrap(SWOGW_fake_script)()
-local function DTYKC_fake_script() -- X.LocalScript 
+coroutine.wrap(CXAUP_fake_script)()
+local function IYHRXH_fake_script() -- X.LocalScript 
 	local script = Instance.new('LocalScript', X)
 
 	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Main.Visible = false
-		script.Parent.Parent.Parent.TopBar.Visible = false
+		script.Parent.Parent.Parent:Destroy()
 	end)
 end
-coroutine.wrap(DTYKC_fake_script)()
-local function DQCNPW_fake_script() -- Show.LocalScript 
+coroutine.wrap(IYHRXH_fake_script)()
+local function TTZYW_fake_script() -- Show.l 
 	local script = Instance.new('LocalScript', Show)
 
 	script.Parent.MouseButton1Click:Connect(function()
@@ -146,4 +166,4 @@ local function DQCNPW_fake_script() -- Show.LocalScript
 		end
 	end)
 end
-coroutine.wrap(DQCNPW_fake_script)()
+coroutine.wrap(TTZYW_fake_script)()
